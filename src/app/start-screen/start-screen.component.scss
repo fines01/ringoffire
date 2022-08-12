@@ -1,0 +1,64 @@
+.start-screen {
+    background-color: #404040;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%; //sonst teilweise scrollbalken & in vw sind scrollbalken nicht mit eingerechnet
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+        height: 100vh;
+    }
+}
+
+h1 {
+    position: absolute;
+    top: 25%;
+    text-align: center;
+    font-weight: bold;
+    color: orangered;
+    text-transform: uppercase;
+    font-size: 3rem;
+    text-shadow: 2px -2px 6px yellow;
+}
+
+.start-label-box {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 45%;
+    
+    
+}
+
+.start-label {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 60vw;
+        height: auto;
+    
+        &:hover {
+            filter: brightness(1.2);
+            cursor: pointer;
+        }
+    }
+}
+.start-label-text {
+    position: absolute;
+    top: 35%;
+    font-size: 2rem;
+    color: brown;
+    z-index: 1;
+
+    &:hover {
+        color: orangered;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,115 @@
+.game-container {
+    display: flex;
+}
+
+.game-field {
+    width: calc(100vw - 350px); //65vw;
+    height: 100vh;
+    max-width: 100%;
+    // background-image: url('/assets/img/board.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: aliceblue;
+}
+
+.player-field {
+    position: fixed;
+    overflow: auto;
+    // padding: 0 0 1rem 1rem;
+    // position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    
+    width: 350px;
+    max-width: 100%;
+
+    background-color: rgb(103, 58, 183, 0.8);
+}
+
+.player-position {
+  position: absolute;
+  right: 0;
+  //top: in html damit variablen aus component.ts übergeben werden können
+  z-index: 1;
+
+  &:last-child {
+    margin-bottom: 2rem;
+  }
+}
+
+.card-field {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+  position: relative;
+  left: 20%;
+}
+
+.card-stack {
+    position: relative;
+    // bottom: 7%;
+    // left: 25%;
+
+    img {
+        position: absolute;
+        width: 120px;
+    }
+}
+
+.top-card {
+    cursor: pointer;
+    transition: all 125ms ease-in-out;
+    
+    &:hover {
+        transform: scale(1.1) translateY(-10px);
+    }
+}
+
+.played-card {
+    right: 225px;
+    // transform: scale(1.2) translateX(-3px) tramslateY(-150px) rotate(-10deg);
+    transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+}
+
+.picked-card {
+    transition: all 125ms ease-in-out;
+    animation: pick-card-animation 1s ease-in-out;
+    transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+}
+
+.btn-add {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
+
+.info-card {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+}
+
+@keyframes pick-card-animation {
+
+    0% {
+        transform: scale(1); // normalerweise !important da hover stärker ist, allerdings nicht in animation verwenden
+    }
+
+    40% {
+        transform: scale(1.7);
+    }
+
+    60% {
+        transform: scale(1.7);
+    }
+
+    100% {
+        transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+    }
+}

@@ -1,0 +1,13 @@
+<!-- From angular material design -->
+<h1 class="mat-dialog-title">Add new player</h1>
+<div class="mat-dialog-content">
+    <p>Please enter the name of the player.</p>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name">
+    </mat-form-field>
+</div>
+<div class="mat-dialog-actions">
+    <button class="mat-button" (click)="onNoClick()">Close</button>
+    <button class="mat-button" [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+</div>

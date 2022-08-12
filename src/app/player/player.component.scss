@@ -1,0 +1,31 @@
+.player {
+
+    width: 300px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    background-color: rgb(100,100, 100, 0.8);
+    border-radius: 50px 0 0 50px; //test: linke ränder (border-bottom-left-radius & border-top-left-radius
+    
+    &:last-child {
+        margin-bottom: 3rem;
+
+    }
+
+    span {
+        font-size: 24px;
+        margin-left: 16px;
+    }
+
+    img {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 50%;
+
+    }
+}
+
+.player-active {
+    background-color: orange !important;
+}
