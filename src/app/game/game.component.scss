@@ -12,6 +12,7 @@
     align-items: center;
     position: relative;
     background-color: aliceblue;
+    overflow: hidden;
 }
 
 .player-field {
@@ -41,19 +42,10 @@
   }
 }
 
-.card-field {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-
-  position: relative;
-  left: 20%;
-}
-
 .card-stack {
     position: relative;
-    // bottom: 7%;
-    // left: 25%;
+    bottom: 11%;
+    left: 11%;
 
     img {
         position: absolute;
