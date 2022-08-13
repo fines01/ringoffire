@@ -25,12 +25,11 @@ export class GameComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    //this.newGame();
     this.newGame();
-    // url parameter abonnieren (wir brauchen erst die id bevor wir collection abonnieren können)
     this.route.params.subscribe( (params)=>{
-      
+
       console.log(params); //params.id
+      
       this.gameId = params['id']; //params.id
       // abonnieren
       this.firestore
@@ -53,29 +52,17 @@ export class GameComponent implements OnInit {
 
   newGame() {
     this.game = new Game();
-
-    //// add new dataset
-    //// we are going to add the whole game object --> data needs to be returned as json
-    //this.firestore.collection('games').add(this.game.toJSON());
-
-    //// oder (schauen was aktuellere Syntax ist)
-    // const coll = collection(this.firestore, 'game');
-    // let gameInfo = await addDoc(coll, {game: this.game.toJSON() });
   }
 
   pickCard() {
-    if (!this.game.pickCardAnimation){
-      // pick card (pop() returns last val of array & removes it from array)
+    if (!this.game.pickCardAnimation && this.game.players.length >= 2){
       let card = this.game.stack.pop();
       if (typeof card === 'string') this.game.currentCard = card;
-      // play animation (add class)
       this.game.pickCardAnimation = true;
-      // change player
       this.game.currentPlayer++;
-      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length; // resr: dh ab [Anz Spieler] fängts wieder bei 0 an, zB 3 Spieler, 3/3 = 1 rest 0;
-      // save updates
+      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       this.updateGame();
-      // remove/stop animation
+      //animation
       setTimeout( ()=>{
         this.game.pickCardAnimation = false;
         this.game.playedCards.push(this.game.currentCard);
@@ -84,18 +71,12 @@ export class GameComponent implements OnInit {
     }
   }
 
-  // Mat Design
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
       width: '250px',
-      // Daten hinzufügen:
-      //data: {name: this.name, animal: this.animal}, // daten hinzufügen
     });
 
     dialogRef.afterClosed().subscribe( (playerName: string) => {
-      console.log('The dialog was closed', playerName);
-      // Daten zurückliefern:
-      // nur speichern, wenn nicht leer (validate)
       if (playerName && playerName.length > 0) {
         this.game.players.push(playerName)
         this.updateGame();
@@ -104,12 +85,15 @@ export class GameComponent implements OnInit {
     });
   }
 
-  // UPDATE game
   updateGame() {
     this.firestore
     .collection('games')
     .doc(this.gameId)
     .update(this.game.toJSON());
+  }
+
+  isGameReady() {
+    return this.game.players.length >= 2;
   }
 
 }

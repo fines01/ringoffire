@@ -21,4 +21,8 @@ export class DialogAddPlayerComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  validateInput() {
+    return !(this.name && this.name.trim().length > 0)
+  }
+
 }

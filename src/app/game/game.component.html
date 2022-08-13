@@ -19,10 +19,10 @@
         src="/assets/img/cards/card_cover.png" 
         alt="" 
         *ngFor="let c of [].constructor(18); let i = index;"
-        [ngStyle]="{'transform': 'rotate('+ i*20 +'deg) translate('+ 20+'px, var(--translate-y-px))'}">
-      <!-- last (upper) card -->
+        [ngStyle]="{'transform': 'rotate('+ i*20 +'deg) translate('+ 20+'px, var(--translate-y))'}">
+      <!-- last (top) card -->
       <img 
-        class="top-card" 
+        class="top-card card-screen-m" 
         src="/assets/img/cards/card_cover.png" 
         alt="" 
         style="right: 2.5px" 
@@ -45,14 +45,16 @@
     <!-- game info for picked card -->
     <app-game-info 
         class="info-card" 
-        [card]="game.currentCard">
+        [card]="game.currentCard"
+        [gameIsReady]="isGameReady()">
     </app-game-info>
 
     <!-- add player button (angular FAB) -->
     <button 
-        mat-fab color="primary" 
-        class="btn-add" 
-        (click)="openDialog()">
+      title="Add a new player"
+      mat-fab color="primary" 
+      class="btn-add" 
+      (click)="openDialog()">
       <mat-icon>add</mat-icon>
     </button>
 

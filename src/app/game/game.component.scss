@@ -3,7 +3,7 @@
 }
 
 .game-field {
-    width: calc(100vw - 350px); //65vw;
+    width: calc(100vw - var(--width-sidecontainer)); //65vw;
     height: 100vh;
     max-width: 100%;
     // background-image: url('/assets/img/board.jpg');
@@ -24,8 +24,9 @@
     bottom: 0;
     right: 0;
     display: flex;
+    overflow-x: hidden;
     
-    width: 350px;
+    width: var(--width-sidecontainer);
     max-width: 100%;
 
     background-color: rgb(103, 58, 183, 0.8);
@@ -44,8 +45,8 @@
 
 .card-stack {
     position: relative;
-    bottom: 11%;
-    left: 11%;
+    bottom: 20%;
+    left:6%;
 
     img {
         position: absolute;
@@ -56,14 +57,36 @@
 .top-card {
     cursor: pointer;
     transition: all 125ms ease-in-out;
-    
+    //transform: translate(120px, 10px) rotate(-10deg); // card screen-s/m/l
+    border: 1px solid brown;
+    border-radius: 16px;
+    //box-shadow: 0 0 6px 2px rgb(0,0,0, 0.5);
+
     &:hover {
-        transform: scale(1.1) translateY(-10px);
+        //transform: scale(1.1) translateY(-10px);
+        box-shadow: 0 0 12px 2px rgb(0, 0, 0, 0.5);
     }
 }
 
+.card-screen-m {
+  transform: translate(120px, 0px) rotate(-10deg);
+
+  &:hover {
+    transform: scale(1.1) translate(110px, 0px) rotate(-5deg);
+  }
+}
+
+.card-screen-l {
+  transform: translate(120px, 10px); // rotate(-10deg);
+
+  &:hover {
+    transform: scale(1.1) translateY(-10px);
+  }
+}
+
 .played-card {
-    right: 225px;
+    right: 300px;
+    top: 200px;
     // transform: scale(1.2) translateX(-3px) tramslateY(-150px) rotate(-10deg);
     transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
 }
@@ -71,7 +94,9 @@
 .picked-card {
     transition: all 125ms ease-in-out;
     animation: pick-card-animation 1s ease-in-out;
-    transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+    //transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+    transform: scale(1.1) translate(110px, 0px) rotate(-5deg);
+
 }
 
 .btn-add {
@@ -90,7 +115,7 @@
 @keyframes pick-card-animation {
 
     0% {
-        transform: scale(1); // normalerweise !important da hover stärker ist, allerdings nicht in animation verwenden
+        transform: scale(1.1) translate(110px, 0px) rotate(-5deg);
     }
 
     40% {

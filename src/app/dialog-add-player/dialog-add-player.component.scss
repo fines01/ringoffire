@@ -1,0 +1,8 @@
+button:last-child {
+    color: var(--blue-1);
+
+    &:disabled {
+        color: rgb(144, 141, 141);
+        cursor:default;
+    }
+}

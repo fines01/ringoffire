@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     font-size: 18px;
-    background-color: rgb(100,100, 100, 0.8);
+    background-color: rgb(100,100, 100, 0.6);
     border-radius: 50px 0 0 50px; //test: linke ränder (border-bottom-left-radius & border-top-left-radius
     
     &:last-child {
@@ -27,5 +27,6 @@
 }
 
 .player-active {
-    background-color: orange !important;
+    background-color: rgb(255, 140, 50, 0.9) !important;
+    transform: scale(1.1);
 }
