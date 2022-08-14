@@ -22,7 +22,7 @@ export class GameComponent implements OnInit {
   gameOver: boolean = false;
 
   // TEMP
-  collectionsRef!: any;
+  //collectionsRef!: any;
   
 
   constructor(
@@ -40,7 +40,7 @@ export class GameComponent implements OnInit {
     this.route.params.subscribe( (params)=>{     
       this.gameId = params['id']; //params.id
 
-      this.collectionsRef = this.firestore.collection('games');
+      //this.collectionsRef = this.firestore.collection('games');
       
       this.gameDocumentRef = this.firestore
       .collection('games')
@@ -134,7 +134,7 @@ export class GameComponent implements OnInit {
   }
 
   onRestartGame() {
-    let players = this.game.players; // mb keep players?
+    let players = this.game.players; // keep players
     this.game = new Game();
     this.gameOver = false;
     this.game.players = players;

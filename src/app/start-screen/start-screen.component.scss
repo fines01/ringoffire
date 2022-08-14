@@ -98,3 +98,18 @@ h1 {
         color: orange;
     }
 }
+
+// TMP.:
+ul {
+    color: rgb(185, 180, 180);
+    z-index: 3;
+    
+    a {
+        color: rgb(244, 149, 33);
+        text-decoration: none;
+
+        &:hover {
+            color: white;
+        }
+    }
+}

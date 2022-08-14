@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Game } from 'src/models/game';
+
 
 @Component({
   selector: 'app-start-screen',
@@ -10,9 +12,18 @@ import { Game } from 'src/models/game';
 })
 export class StartScreenComponent implements OnInit {
 
+  gamesCollection!: any;
+  allGames$!: Observable<any[]>;
+
   constructor(private router: Router, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+    //this.allGames = this.firestore.collection('games');
+    this.gamesCollection = this.firestore.collection('games'); // collection
+    this.allGames$ = this.getAllGames();// observable
+    
+    console.log(this.gamesCollection, this.allGames$);
+    this.checkGameActivity();
   }
 
   startGame() {
@@ -22,11 +33,18 @@ export class StartScreenComponent implements OnInit {
     this.firestore
     .collection('games')
     .add(game.toJSON())
-    // then: liefert eine promise 
     .then((gameInfo: any)=>{
-      // redirect to game route (unique route for unique game, can be sent to other players so they can join the game )
       this.router.navigateByUrl('/game/' + gameInfo.id); //
     });
+  }
+
+  getAllGames(): Observable<any[]> {
+    //return collectionData(this.gamesCollection);
+    return this.gamesCollection.valueChanges({idField:'id'});
+  }
+
+  checkGameActivity(){
+    //console.log(Date.now() - game.lastActiveTime >= 300000 ); // 5 min --> mark as inactive
   }
 
 }

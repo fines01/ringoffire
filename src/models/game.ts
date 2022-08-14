@@ -7,7 +7,7 @@ export class Game {
     public pickCardAnimation: boolean = false;
     public currentCard: string = '';
     public lastActiveTime: number = Date.now();
-    public gameRoomName: string = 'Room ' + new Date().toISOString(); //auto generate some name
+    public gameRoomName: string = new Date().toISOString(); //auto generate some name
 
     constructor() {
         // add cards to stack

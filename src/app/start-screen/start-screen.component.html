@@ -10,4 +10,10 @@
 
     <!-- active rooms: later: open rooms or users created rooms -->
     <h3 class="rooms-info">Show currently open rooms</h3>
+
+    <!-- todo: style, open in modal? -->
+    <ul>
+        <li *ngFor="let game of allGames$ | async "><a routerLink="/game/{{ game.id }}" href="">Room #ID: {{ game.gameRoomName }}</a> - Room is currently inactive</li>
+    </ul>
+    
 </div>
