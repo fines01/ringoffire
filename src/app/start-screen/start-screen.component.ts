@@ -46,9 +46,7 @@ export class StartScreenComponent implements OnInit {
   }
 
   sortByTimestamp(arr: any[]) {
-    arr.sort( (x:any,y:any)=>{
-      return x.lastActiveTime - y.lastActiveTime
-    })
+   
   }
 
   toggleBox() {
