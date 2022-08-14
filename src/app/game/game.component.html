@@ -47,7 +47,9 @@
         class="info-card" 
         [card]="game.currentCard"
         [gameIsReady]="isGameReady()"
-        [gameIsOver]="isGameOver()">
+        [gameIsOver]="isGameOver()"
+        (deleteGame)="onDeleteGame()"
+        (restartGame)="onRestartGame()">
     </app-game-info>
 
     <!-- add player button (angular FAB) -->

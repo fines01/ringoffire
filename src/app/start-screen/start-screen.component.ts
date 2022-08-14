@@ -15,10 +15,9 @@ export class StartScreenComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  newGame() {
+  startGame() {
     //Start Game:
     let game = new Game();
-    console.log(typeof game.toJSON()); // object
     // CREATE: add a new game object in firestore db
     this.firestore
     .collection('games')

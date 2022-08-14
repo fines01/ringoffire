@@ -5,7 +5,7 @@
     {{ description }}
   </mat-card-content>
   <mat-card-actions *ngIf="gameIsOver">
-    <button mat-button (click)="deleteGame()">End Game</button>
-    <button mat-button (click)="restartGame()">Start again!</button>
+    <button mat-button (click)="emitDeleteEvent()">End Game</button>
+    <button mat-button (click)="emitRestartEvent()">Start again!</button>
   </mat-card-actions>
 </mat-card>

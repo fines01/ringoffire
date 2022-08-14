@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-game-info',
@@ -31,11 +31,12 @@ export class GameInfoComponent implements OnInit, OnChanges {
   @Input() gameIsReady!: boolean;
   @Input() gameIsOver!: boolean;
 
+  @Output() deleteGame = new EventEmitter();
+  @Output() restartGame = new EventEmitter();
+
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.gameIsOver);
-  }
+  ngOnInit(): void { }
 
   ngOnChanges(): void {
     if (!this.card && this.gameIsReady && !this.gameIsOver) {
@@ -57,12 +58,12 @@ export class GameInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  deleteGame() {
-    // emit delete = true to game.component
+  emitDeleteEvent() {
+    this.deleteGame.emit(); // emit empty event or bool
   }
 
-  restartGame() {
-    // emit restart to game.component
+  emitRestartEvent() {
+    this.restartGame.emit();
   }
 
 

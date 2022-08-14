@@ -6,15 +6,16 @@ export class Game {
     public currentPlayer: number = 0;
     public pickCardAnimation: boolean = false;
     public currentCard: string = '';
-    public lastActiveTime!: number;
+    public lastActiveTime: number = Date.now();
+    public gameRoomName: string = 'Room ' + new Date().toISOString(); //auto generate some name
 
     constructor() {
         // add cards to stack
         for (let i = 1; i < 14; i++) {
             this.stack.push('spade_' + i);
-            this.stack.push('hearts_' + i);
-            this.stack.push('clubs_' + i);
-            this.stack.push('diamonds_' + i);
+            // this.stack.push('hearts_' + i);
+            // this.stack.push('clubs_' + i);
+            // this.stack.push('diamonds_' + i);
         }
         // mix cards
         this.shuffle(this.stack);
@@ -45,6 +46,7 @@ export class Game {
             pickCardAnimation: this.pickCardAnimation,
             currentCard: this.currentCard,
             lastActiveTime: this.lastActiveTime,
+            gameRoomName: this.gameRoomName,
         }
     }
 
