@@ -1,13 +1,20 @@
 :root {
-    --translate-y: 120px; //320 big screens
-    --width-sidecontainer: 350px; //25vw;
-    // colors
-    --blue-1: rgb(103, 58, 183);
+  --translate-y: 120px; //320 big screens
+  --width-sidecontainer: 350px; //25vw;
+  // colors
+  --blue-1: rgb(103, 58, 183);
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-    margin: 0;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.d-none {
+    display: none;
+}

@@ -3,17 +3,29 @@
    
     <div class="start-label-box">
         <span class="start-label">
-            <span (click)="startGame()" class="start-label-text">Begin Game</span>
+            <span (click)="startGame()" class="start-label-text">New Game</span>
             <img (click)="startGame()" src="assets/img/startlabel.svg" alt="">
         </span>
     </div>
 
     <!-- active rooms: later: open rooms or users created rooms -->
-    <h3 class="rooms-info">Show currently open rooms</h3>
+    <h3 class="rooms-info" (click)="toggleBox()">Currently open rooms</h3>
 
     <!-- todo: style, open in modal? -->
-    <ul>
-        <li *ngFor="let game of allGames$ | async "><a routerLink="/game/{{ game.id }}" href="">Room #ID: {{ game.gameRoomName }}</a> - Room is currently inactive</li>
+    <ul [class.d-none]="hideRoomsList"
+        [class.fade-out]="!fadeOutRoomsList">
+        <li 
+            *ngFor="let game of allGames$ | async ">
+                <a 
+                    routerLink="/game/{{ game.id }}" 
+                    href="">Room #ID: {{ game.gameRoomName }}
+                </a> 
+
+                is currently 
+                <span [class.active]="(checkGameActivity(game.lastActiveTime))">
+                    {{ checkGameActivity(game.lastActiveTime) ? 'active' : 'inactive' }}
+                </span>
+        </li>
     </ul>
     
 </div>

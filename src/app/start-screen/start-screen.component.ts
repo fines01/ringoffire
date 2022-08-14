@@ -14,22 +14,20 @@ export class StartScreenComponent implements OnInit {
 
   gamesCollection!: any;
   allGames$!: Observable<any[]>;
+  fadeOutRoomsList: boolean = true;
+  hideRoomsList: boolean = false;
 
   constructor(private router: Router, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    //this.allGames = this.firestore.collection('games');
     this.gamesCollection = this.firestore.collection('games'); // collection
     this.allGames$ = this.getAllGames();// observable
     
     console.log(this.gamesCollection, this.allGames$);
-    this.checkGameActivity();
   }
 
   startGame() {
-    //Start Game:
     let game = new Game();
-    // CREATE: add a new game object in firestore db
     this.firestore
     .collection('games')
     .add(game.toJSON())
@@ -39,12 +37,25 @@ export class StartScreenComponent implements OnInit {
   }
 
   getAllGames(): Observable<any[]> {
-    //return collectionData(this.gamesCollection);
-    return this.gamesCollection.valueChanges({idField:'id'});
+    return this.gamesCollection.valueChanges( {idField:'id'} ); //valueChanges() returns Observable
   }
 
-  checkGameActivity(){
-    //console.log(Date.now() - game.lastActiveTime >= 300000 ); // 5 min --> mark as inactive
+  // rooms are marked as inactive after (5) minutes
+  checkGameActivity(lastActive: number){
+    return (Date.now() - lastActive <= 300000);
+  }
+
+  sortByTimestamp(arr: any[]) {
+    arr.sort( (x:any,y:any)=>{
+      return x.lastActiveTime - y.lastActiveTime
+    })
+  }
+
+  toggleBox() {
+    this.fadeOutRoomsList = !this.fadeOutRoomsList;
+    setTimeout( ()=>{
+      this.hideRoomsList = !this.hideRoomsList
+    },1000);
   }
 
 }
