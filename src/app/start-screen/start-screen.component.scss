@@ -1,11 +1,25 @@
 .start-screen {
-    background-color: #404040;
+    background-image: url('../../assets/img/cards-1912165_1920.jpg');
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     max-width: 100%; //sonst teilweise scrollbalken & in vw sind scrollbalken nicht mit eingerechnet
+    max-height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+    position: relative;
+    padding: 3rem;
+    box-sizing: border-box;
+    
+    &:before {
+        content: '';
+        position: absolute;
+        top:0; bottom:0;
+        left:0; right:0;
+        background-color: rgb(0, 0, 0, 0.6);
+    }
     
     img {
         height: 100vh;
@@ -13,21 +27,27 @@
 }
 
 h1 {
-    position: absolute;
-    top: 25%;
+    // position: absolute;
+    // top: 25%;
     text-align: center;
     font-weight: bold;
     color: orangered;
     text-transform: uppercase;
     font-size: 3rem;
     text-shadow: 2px -2px 6px yellow;
+    z-index: 1;
+
+    &:hover {
+        color: orange;
+        // text-shadow: 2px -2px 9px red;
+    }
 }
 
 .start-label-box {
-    position: absolute;
     left: 0;
     right: 0;
-    bottom: 45%;
+    // position: absolute;
+    // bottom: 40%;
     
     
 }
@@ -50,15 +70,31 @@ h1 {
         }
     }
 }
+
 .start-label-text {
     position: absolute;
     top: 35%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: brown;
     z-index: 1;
+    font-weight: bold;
 
     &:hover {
         color: orangered;
         cursor: pointer;
+    }
+}
+
+.rooms-info {
+    color: orangered;
+    // position: absolute;
+    // bottom: 20%;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+
+    &:hover {
+        color: orange;
     }
 }

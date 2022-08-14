@@ -29,27 +29,40 @@ export class GameInfoComponent implements OnInit, OnChanges {
 
   @Input() card!: string;
   @Input() gameIsReady!: boolean;
+  @Input() gameIsOver!: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.gameIsReady);
+    console.log(this.gameIsOver);
   }
 
   ngOnChanges(): void {
-    if (this.card && this.gameIsReady) {
-      let cardNumber = +this.card.split('_')[1];
-      this.title = this.cardActions[cardNumber-1].title;
-      this.description = this.cardActions[cardNumber-1].description;
+    if (!this.card && this.gameIsReady && !this.gameIsOver) {
+      this.title = 'Please pick a card';
+      this.description ='Please click on the card stack to select the next card';
+    }
+    if (this.gameIsOver){
+      this.title = ' Game Over! '
+      this.description = ' Leave room or start again? '
     }
     if (!this.gameIsReady) {
       this.title = 'Please add at least 2 players!';
       this.description ='Click on the button above to add a new player.';
     }
-    if (!this.card && this.gameIsReady) {
-      this.title = 'Please pick a card';
-      this.description ='Please click on the card stack to select the next card';
+    if (this.card && this.gameIsReady && !this.gameIsOver) {
+      let cardNumber = +this.card.split('_')[1];
+      this.title = this.cardActions[cardNumber-1].title;
+      this.description = this.cardActions[cardNumber-1].description;
     }
+  }
+
+  deleteGame() {
+    // emit delete = true to game.component
+  }
+
+  restartGame() {
+    // emit restart to game.component
   }
 
 

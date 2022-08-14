@@ -6,6 +6,7 @@ export class Game {
     public currentPlayer: number = 0;
     public pickCardAnimation: boolean = false;
     public currentCard: string = '';
+    public lastActiveTime!: number;
 
     constructor() {
         // add cards to stack
@@ -43,6 +44,7 @@ export class Game {
             currentPlayer: this.currentPlayer,
             pickCardAnimation: this.pickCardAnimation,
             currentCard: this.currentCard,
+            lastActiveTime: this.lastActiveTime,
         }
     }
 

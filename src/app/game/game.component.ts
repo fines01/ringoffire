@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, Directive, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'; // später ev. entfernen was ich nicht brauche
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { addDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { databaseInstance$ } from '@angular/fire/database';
 
 @Component({
   selector: 'app-game',
@@ -13,79 +14,91 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GameComponent implements OnInit {
 
-  // pickCardAnimation: boolean = false;
-  // currentCard!: string;
   game!: Game;
   gameId!: string;
+  gameOver: boolean = false;
 
   constructor(
     private firestore: AngularFirestore, 
     public dialog: MatDialog, 
-    private route: ActivatedRoute //s.d. über routen-rarameter jew game id übergeben werden kann
+    private route: ActivatedRoute 
     ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.newGame();
-    this.route.params.subscribe( (params)=>{
 
-      console.log(params); //params.id
-      
+    //open game room modal (name room, show btn to copy url)
+
+   this.route.params.subscribe( (params)=>{     
       this.gameId = params['id']; //params.id
-      // abonnieren
+      
       this.firestore
       .collection('games')
       .doc(this.gameId)
       .valueChanges()
       .subscribe( (game: any) => {
-        console.log('Game update ', game);
         this.game.currentPlayer = game.currentPlayer;
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
         this.game.stack = game.stack;
         this.game.pickCardAnimation = game.pickCardAnimation,
         this.game.currentCard = game.currentCard
+        this.game.lastActiveTime = game.lastActiveTime;
+        this.checkGameStatus(game.stack);
       });
-
     });
 
   }
 
-  newGame() {
+  newGame(): void {
     this.game = new Game();
   }
 
   pickCard() {
-    if (!this.game.pickCardAnimation && this.game.players.length >= 2){
+    console.log(this.game.stack.length, this.game.players);
+    this.checkGameStatus();
+
+    if (!this.game.pickCardAnimation && this.game.players.length >= 2 && !this.gameOver){
       let card = this.game.stack.pop();
       if (typeof card === 'string') this.game.currentCard = card;
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-      this.updateGame();
+      this.game.lastActiveTime = Date.now();
+      this.updateGamesCollection();
       //animation
       setTimeout( ()=>{
         this.game.pickCardAnimation = false;
         this.game.playedCards.push(this.game.currentCard);
-        this.updateGame();
+        this.updateGamesCollection();
       }, 1000);
     }
+  
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
-      width: '250px',
+  openModal(componentRef: any, modalWidth: string) {
+    const dialogRef = this.dialog.open(componentRef, {
+      width: modalWidth,
     });
+    return dialogRef;
+  }
 
+  addPlayer(dialogRef: any) {
     dialogRef.afterClosed().subscribe( (playerName: string) => {
       if (playerName && playerName.length > 0) {
         this.game.players.push(playerName)
-        this.updateGame();
+        this.updateGamesCollection();
       }
-
     });
+
   }
 
-  updateGame() {
+  addPlayerModal(): void {
+    const dialogRef = this.openModal(DialogAddPlayerComponent, '250px');
+    this.addPlayer(dialogRef);
+  }
+
+  updateGamesCollection() {
     this.firestore
     .collection('games')
     .doc(this.gameId)
@@ -94,6 +107,28 @@ export class GameComponent implements OnInit {
 
   isGameReady() {
     return this.game.players.length >= 2;
+  }
+
+  isGameOver() {
+    return this.gameOver;
+  }
+
+  @HostListener('window: load', ['$event'])
+  onLoad1(event: Event) {
+    console.log('LoAD');
+  }
+
+  @HostListener('window: load')
+  onLoad2() {
+    console.log('LOAD');
+  }
+
+  checkGameStatus( stack = this.game.stack ) {
+    if (stack.length === 0) this.gameOver = true;
+  }
+
+  copyURLToClipboard() {
+    navigator.clipboard.writeText(window.location.href);
   }
 
 }

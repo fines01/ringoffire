@@ -1,4 +1,4 @@
-<div class="game-container">
+<div class="game-container" (load)="checkGameStatus()">
 
   <div class="player-field">
     <app-player 
@@ -43,10 +43,11 @@
     </div>
 
     <!-- game info for picked card -->
-    <app-game-info 
+    <app-game-info
         class="info-card" 
         [card]="game.currentCard"
-        [gameIsReady]="isGameReady()">
+        [gameIsReady]="isGameReady()"
+        [gameIsOver]="isGameOver()">
     </app-game-info>
 
     <!-- add player button (angular FAB) -->
@@ -54,7 +55,7 @@
       title="Add a new player"
       mat-fab color="primary" 
       class="btn-add" 
-      (click)="openDialog()">
+      (click)="addPlayerModal()">
       <mat-icon>add</mat-icon>
     </button>
 
