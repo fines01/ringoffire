@@ -6,15 +6,56 @@
     font-size: 18px;
     background-color: rgb(100,100, 100, 0.6);
     border-radius: 50px 0 0 50px; //test: linke ränder (border-bottom-left-radius & border-top-left-radius
+    //box-sizing: border-box;
+    transition: all 235ms linear;
+    position: relative;
+
+    &:hover {
+        box-shadow: 0 0 3px 0 rgba(0,0,0,0.5);
+    }
+   
     
     &:last-child {
         margin-bottom: 3rem;
 
     }
 
-    span {
+    span, input {
         font-size: 24px;
         margin-left: 16px;
+    }
+
+    input {
+        border: none;
+        outline: none;
+        font-family: inherit;
+        background-color: transparent;
+        // font-size: 24px;
+        // margin-left: 16px;
+        border-bottom: 1px solid rgba(182, 182, 182, 0.5);
+        //box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+        //border-radius: 0.5rem 0 0 0.5rem;
+        padding-right: 0.25rem;
+        box-sizing: border-box;
+    }
+
+    button {
+        border: none;
+        //box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+        box-shadow: none;
+        background-color: transparent;
+        margin-left: 0rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+        //padding: 0.2rem 0.65rem;
+        padding: 0;
+        cursor: pointer;
+        font-family: inherit;
+        //text-transform: uppercase;
+        font-size: 0.75rem;
+
+        &:hover {
+            background-color: rgb(100, 100, 100, 0.7);
+        }
     }
 
     img {
@@ -22,6 +63,12 @@
         width: 70px;
         object-fit: cover;
         border-radius: 50%;
+        cursor: pointer;
+        transition: all 235ms linear;
+
+        &:hover {
+            transform: scale(1.05);
+        }
 
     }
 }
@@ -29,4 +76,77 @@
 .player-active {
     background-color: rgb(255, 140, 50, 0.9) !important;
     transform: scale(1.1);
+
+    button:first-child {
+        &:hover {
+            background-color: rgb(255, 140, 50, 1) !important;
+        }
+
+        // .delete-user-btn {
+        //     right: 0.75rem;
+            
+        //     mat-icon {
+        //         color: purple;
+        //     }
+        // }
+    }
+}
+
+.input-field {
+    display: flex;
+
+    input {
+        max-width: 30%;
+    }
+
+}
+
+.player-active .edit-buttons {
+
+    .delete-user-btn {
+        right: 0.75rem;
+
+        mat-icon {
+            color: rgb(106, 0, 0);
+        }
+    }
+}
+
+.edit-buttons {
+    display: flex;
+    flex-direction: column;    
+
+    button:first-child{
+        border-radius: 0 0.5rem 0 0;
+        color: indigo;
+       
+    }
+
+    button:last-child{
+        // border-radius: 0 0 0.5rem 0;
+        //box-shadow: 0 0 3px 0 rgb(255, 0, 0, 0.9);
+        background-color: rgb(255, 0, 0, 0.2);
+        
+        position: absolute;
+        top:0;
+        right:0;
+        padding: 0 0.5rem;
+        height: 100%;
+        box-sizing: border-box;
+        
+        mat-icon {
+            color: rgb(250, 66, 66);
+        }
+
+        &:hover {
+            background-color: rgb(255, 0, 0, 0.5);
+            mat-icon {
+                color: black;
+            }
+        }
+    }
+}
+
+.mat-mini-fab .mat-button-wrapper {
+    padding: 0;
 }

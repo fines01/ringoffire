@@ -9,7 +9,11 @@
     </div>
 
     <!-- active rooms: later: open rooms or users created rooms -->
-    <h3 class="rooms-info" (click)="toggleBox()">Currently open rooms</h3>
+    <h3 class="rooms-info" 
+        (click)="toggleBox()"
+        title="{{ hideRoomsList ? 'Show List' : 'Hide List' }}">
+            Currently open game rooms
+    </h3>
 
     <!-- todo: style, open in modal? -->
     <ul [class.d-none]="hideRoomsList"
@@ -17,13 +21,17 @@
         <li 
             *ngFor="let game of allGames$ | async ">
                 <a 
+                    target="_blank"
+                    title="Go to room"
                     routerLink="/game/{{ game.id }}" 
                     href="">Room #ID: {{ game.gameRoomName }}
                 </a> 
 
                 is currently 
-                <span [class.active]="(checkGameActivity(game.lastActiveTime))">
-                    {{ checkGameActivity(game.lastActiveTime) ? 'active' : 'inactive' }}
+                <span 
+                    [class.active]="(checkGameActivity(game.lastActiveTime))"
+                    title="{{ checkGameActivity(game.lastActiveTime) ? '' : 'No activity in the last '+minutesUntilInactive+' minutes' }}">
+                        {{ checkGameActivity(game.lastActiveTime) ? 'active' : 'inactive' }}
                 </span>
         </li>
     </ul>

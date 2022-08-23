@@ -16,6 +16,7 @@ export class StartScreenComponent implements OnInit {
   allGames$!: Observable<any[]>;
   fadeOutRoomsList: boolean = true;
   hideRoomsList: boolean = false;
+  minutesUntilInactive = 5;
 
   constructor(private router: Router, private firestore: AngularFirestore) { }
 
@@ -42,7 +43,8 @@ export class StartScreenComponent implements OnInit {
 
   // rooms are marked as inactive after (5) minutes
   checkGameActivity(lastActive: number){
-    return (Date.now() - lastActive <= 300000);
+    let msUntilInactive = this.minutesUntilInactive * 60000;
+;   return (Date.now() - lastActive <= msUntilInactive);
   }
 
   sortByTimestamp(arr: any[]) {

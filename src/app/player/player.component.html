@@ -1,4 +1,11 @@
 <div class="player" [class.player-active]="playerActive">
-    <img src="assets/img/profile/avatar.png"> 
-    <span>{{ name }}</span>
+    <img src="assets/img/profile/avatar.png" (click)="toggleEditMode()"> 
+    <span *ngIf="!editMode">{{ name }}</span>
+    <div *ngIf="editMode" class="input-field">
+        <input type="text" value="{{ name }}" autofocus>
+        <div class="edit-buttons">
+            <button mat-mini-fab><mat-icon>check_circle</mat-icon></button>
+            <button mat-mini-fab class="delete-user-btn"><mat-icon color="warn">delete_forever</mat-icon></button>
+        </div>
+    </div>
 </div>

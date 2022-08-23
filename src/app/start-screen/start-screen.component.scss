@@ -123,11 +123,17 @@ ul {
     span {
         color: gray;
         font-weight: bold;
+        //cursor: help;
+    }
+
+    li {
+        cursor: default;
     }
 
     .active {
         color: var(--blue-1);
         color: rgb(127, 220, 173);
+        //cursor: default;
     }
 
 }

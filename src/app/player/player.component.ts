@@ -7,12 +7,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PlayerComponent implements OnInit {
 
+  editMode = false;
+
   @Input() name!: string;
   @Input() playerActive: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleEditMode() {
+    this.editMode = !this.editMode;
   }
 
 }
