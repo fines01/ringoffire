@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-player',
@@ -10,7 +10,12 @@ export class PlayerComponent implements OnInit {
   editMode = false;
 
   @Input() name!: string;
-  @Input() playerActive: boolean = false;
+  @Input() nameIndex!: number;
+  @Input() playerIsActive: boolean = false;
+
+  @Output() updatePlayer = new EventEmitter();
+  @Output() deletePlayer = new EventEmitter();
+
 
   constructor() { }
 
@@ -18,7 +23,18 @@ export class PlayerComponent implements OnInit {
   }
 
   toggleEditMode() {
-    this.editMode = !this.editMode;
+    if (this.editMode) this.emitUpdateEvent();
+    else this.editMode = !this.editMode;
+  }
+
+  emitUpdateEvent() {
+    this.updatePlayer.emit([this.name, this.nameIndex]);
+    this.editMode = false;
+  }
+
+  emitDeleteEvent() {
+    this.deletePlayer.emit([this.name, this.nameIndex, this.playerIsActive]); //or only nameIndex 
+    this.editMode = false;
   }
 
 }

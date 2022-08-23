@@ -75,8 +75,7 @@ export class GameComponent implements OnInit {
       let card = this.game.stack.pop();
       if (typeof card === 'string') this.game.currentCard = card;
       this.game.pickCardAnimation = true;
-      this.game.currentPlayer++;
-      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+      this.nextPlayer();
       this.game.lastActiveTime = Date.now();
       this.updateGamesCollection();
       //animation
@@ -89,7 +88,14 @@ export class GameComponent implements OnInit {
   
   }
 
-  openModal(componentRef: any, modalWidth: string) {
+  nextPlayer(index: number | undefined = undefined) {
+    if (index || index == 0) this.game.currentPlayer = index; // ! if index == 0 --> evaluates to false
+    else this.game.currentPlayer++;
+    this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+    if (this.game.players.length < 2) this.game.currentPlayer = 0;
+  }
+
+  openModal(componentRef: any, modalWidth: string):  MatDialogRef<unknown, any> {
     const dialogRef = this.dialog.open(componentRef, {
       width: modalWidth,
     });
@@ -121,7 +127,7 @@ export class GameComponent implements OnInit {
 
   async onDeleteGame() {
     this.router.navigate(['/']);
-    await this.gameDocumentRef.delete(); // needs to be unsubscribed somehow?
+    await this.gameDocumentRef.delete();
   }
 
   onRestartGame() {
@@ -129,6 +135,21 @@ export class GameComponent implements OnInit {
     this.game = new Game();
     this.gameOver = false;
     this.game.players = players;
+    this.updateGamesCollection();
+  }
+
+  onUpdatePlayer(player: [name: string, index: number]){
+    let newName = player[0];
+    let playerIndex = player[1];
+    this.game.players[playerIndex] = newName;
+    this.updateGamesCollection();
+  }
+
+  onDeletePlayer(player: [name: string, index: number, isActive: boolean]){
+    let playerIndex = player[1];
+    // if (this.game.players[playerIndex] === player[0] ) // maybe check
+    this.game.players.splice(playerIndex, 1);
+    if (player[2]) this.nextPlayer(playerIndex);
     this.updateGamesCollection();
   }
 
