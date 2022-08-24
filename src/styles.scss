@@ -1,9 +1,11 @@
+@import './src/breakpoints.scss';
+
 // css properties 
 //(advantages over SCSS variables: 1) are scoped to the element they are declared on, 2) cascade and 3) can be manipulated in JavaScript.
 :root {
   // general
   --translate-y: 120px; //320 big screens
-  --width-sidecontainer: 350px; //25vw;
+  --width-sidecontainer: 330px; //25vw;
   // colors
   --blue-1: rgb(103, 58, 183);
 }
@@ -20,4 +22,59 @@ body {
 
 .d-none {
     display: none;
+}
+
+@media screen and (max-width: $breakpoint-s) {
+  :root {
+    --translate-y: 67px;
+  }
+}
+
+@media screen and (max-width: $breakpoint-xs) {
+  :root {
+    --translate-y: 45px;
+  }
+}
+
+@media screen and(max-width: $breakpoint-xxs){
+  :root {
+    --translate-y: 15px;
+  }
+}
+
+@media screen and (min-width: $breakpoint-sm){
+  :root {
+    --translate-y: 90px;
+  }
+}
+
+@media screen and (min-width: $breakpoint-mm){
+  :root {
+    --translate-y: 120px;
+  }
+}
+
+@media screen and(min-width: $breakpoint-md) {
+  :root {
+    --translate-y: 166px;
+  }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  :root {
+    --width-sidecontainer: 310px;
+  }
+}
+
+@media screen and(min-width: $breakpoint-lg) {
+  :root {
+    --translate-y: 220px;
+    --width-sidecontainer: 350px;
+  }
+}
+
+@media screen and(min-width: $breakpoint-xl){
+  :root {
+    --translate-y: 280px;
+  }
 }

@@ -1,3 +1,5 @@
+@import './src/breakpoints.scss';
+
 .player {
 
     width: 300px;
@@ -13,7 +15,6 @@
     &:hover {
         box-shadow: 0 0 3px 0 rgba(0,0,0,0.5);
     }
-   
     
     &:last-child {
         margin-bottom: 3rem;
@@ -21,8 +22,8 @@
     }
 
     span, input {
-        font-size: 24px;
-        margin-left: 16px;
+        font-size: 1.5rem;
+        margin-left: 1rem;
     }
 
     input {
@@ -56,6 +57,7 @@
         &:hover {
             background-color: rgb(100, 100, 100, 0.7);
         }
+
     }
 
     img {
@@ -82,14 +84,15 @@
             background-color: rgb(255, 140, 50, 1) !important;
         }
 
-        // .delete-user-btn {
-        //     right: 0.75rem;
-            
-        //     mat-icon {
-        //         color: purple;
-        //     }
-        // }
     }
+
+    @media screen and(max-width: $breakpoint-sm) {
+        position: fixed;
+        top: 2rem;
+        right: 0;
+        //z-index: 
+    }
+
 }
 
 .input-field {
@@ -149,4 +152,52 @@
 
 .mat-mini-fab .mat-button-wrapper {
     padding: 0;
+}
+
+
+ @media screen and (max-width: $breakpoint-md) {
+   
+    .player {
+        width: 290px;
+
+        span,
+        input {
+          font-size: 1rem;
+          margin-left: 0.9rem;
+        }
+
+        img {
+          height: 3.5rem;
+          width: 3.5rem;
+        }
+    }
+
+ }
+
+@media screen and(max-width: $breakpoint-s) {
+   .player {
+        width: 250px;
+    }
+}
+
+@media screen and(max-width: $breakpoint-xs) {
+    .player {
+        width: 240px;
+    }
+}
+
+@media screen and(max-width: $breakpoint-xxs) {
+    .player {
+        width: 230px;
+        top: 7rem;
+    }
+
+    .player-active .edit-buttons{
+        .delete-user-btn {
+            right: 0.2rem;
+            padding: 0;
+        }
+    }
+    
+
 }

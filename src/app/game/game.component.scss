@@ -1,3 +1,5 @@
+@import './src/breakpoints.scss';
+
 .game-container {
     display: flex;
 }
@@ -13,6 +15,10 @@
     position: relative;
     background-color: aliceblue;
     overflow: hidden;
+
+    @media screen and(max-width: $breakpoint-sm) {
+      width: 100vw;
+    }
 }
 
 .player-field {
@@ -25,11 +31,16 @@
     right: 0;
     display: flex;
     overflow-x: hidden;
+    z-index: 2;
     
     width: var(--width-sidecontainer);
     max-width: 100%;
 
-    background-color: rgb(103, 58, 183, 0.8);
+    background-color: rgb(103, 58, 183, 0.85);
+
+    @media screen and(max-width: $breakpoint-sm) {
+       width: 0;
+    }
 }
 
 .player-position {
@@ -45,12 +56,54 @@
 
 .card-stack {
     position: relative;
-    bottom: 20%;
+    bottom: 18%;
     left:6%;
+
+    
+    
+    @media screen and(max-width: $breakpoint-md){
+      bottom: 18%;
+      left: 0%;
+    }
+    
+    @media screen and(max-width: $breakpoint-mm) {}
+    
+    @media screen and(max-width: $breakpoint-sm) {}
+
+    @media screen and(max-width: $breakpoint-s) {
+      //bottom: 19%;
+      left: -5%;
+      
+      img {
+        width: 110px;
+      }
+    }
+    
+    @media screen and(max-width: $breakpoint-xs) {
+      bottom: 24%;
+      left: -10%;
+    }
+
+    @media screen and(max-width: $breakpoint-xxs) {
+      bottom: 22%;
+      left: -15%;
+    }
+
+    @media screen and (min-width: $breakpoint-xl) {
+      bottom: 14%;
+    }
+
+    @media screen and (min-width: $breakpoint-lg){
+      bottom: 15%;
+    }
 
     img {
         position: absolute;
         width: 120px;
+
+        @media screen and (min-width: $breakpoint-xl){
+          width: 130px;
+        }
     }
 }
 
@@ -85,10 +138,46 @@
 }
 
 .played-card {
-    right: 300px;
-    top: 200px;
+    right:25vw; // 300px;
+    top: 15vw; //200px;
     // transform: scale(1.2) translateX(-3px) tramslateY(-150px) rotate(-10deg);
     transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+
+    @media screen and(max-width: $breakpoint-lg){
+      right: 21vw;
+      top: 29vw;
+    }
+    
+    @media screen and (max-width: $breakpoint-md) {
+      right: 14vw;
+      top: 42vw;
+    }
+
+    @media screen and (max-width: $breakpoint-mm) {
+      right: 8vw;
+      top: 49vw;
+    }
+
+    @media screen and(max-width: $breakpoint-sm) {
+      right: 18vw;
+      top: 60vw;
+    }
+    
+    @media screen and(max-width: $breakpoint-s) {
+      right: 9vw;
+      top: 86vw;
+    }
+
+    @media screen and(max-width: $breakpoint-xs) {
+      right: 0vw;
+      top: 111vw;
+    }
+
+    @media screen and(max-width: $breakpoint-xxs) {
+      right: -20vw;
+      top: 140vw;
+    }
+
 }
 
 .picked-card {
