@@ -12,7 +12,7 @@
     <h3 class="rooms-info" 
         (click)="toggleBox()"
         title="{{ hideRoomsList ? 'Show List' : 'Hide List' }}">
-            Currently open game rooms
+            Currently open game rooms <mat-icon *ngIf="hideRoomsList" class="arrow-down">arrow_downwards</mat-icon>
     </h3>
 
     <!-- todo: style, open in modal? -->

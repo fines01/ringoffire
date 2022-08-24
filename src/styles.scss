@@ -1,4 +1,7 @@
+// css properties 
+//(advantages over SCSS variables: 1) are scoped to the element they are declared on, 2) cascade and 3) can be manipulated in JavaScript.
 :root {
+  // general
   --translate-y: 120px; //320 big screens
   --width-sidecontainer: 350px; //25vw;
   // colors

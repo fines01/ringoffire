@@ -1,3 +1,7 @@
+// import SASS variables
+// (as CSS custom props can be used in media-query declarations)
+@import './src/breakpoints.scss';
+
 .start-screen {
     background-image: url('../../assets/img/cards-1912165_1920.jpg');
     background-size: cover;
@@ -32,12 +36,29 @@ h1 {
     color: orangered;
     text-transform: uppercase;
     font-size: 3rem;
+    margin: 0.6rem 0;
     text-shadow: 2px -2px 6px yellow;
     z-index: 1;
 
     &:hover {
         color: orange;
         // text-shadow: 2px -2px 9px red;
+    }
+
+    @media screen and (max-width: $breakpoint-sm) {
+        font-size: 2.6rem;
+    }
+
+    @media screen and (max-width: $breakpoint-s) {
+        font-size: 2.4rem;
+    }
+
+    @media screen and (max-width: $breakpoint-xs) {
+        font-size: 2.3rem;
+    }
+
+    @media screen and (max-width: $breakpoint-xxs) {
+        font-size: 2rem;
     }
 }
 
@@ -55,8 +76,26 @@ h1 {
     align-items: center;
 
     img {
-        width: 60vw;
+        //width: 60vw;
+        //max-width: 40rem;
+        width: 40rem;
         height: auto;
+
+        @media screen and (max-width: $breakpoint-sm ) {
+            width: 34rem;
+        }
+
+        @media screen and (max-width: $breakpoint-s) {
+            width: 25rem;
+        }
+
+        @media screen and (max-width: $breakpoint-xs) {
+            width: 20rem;
+        }
+
+        @media screen and (max-width: $breakpoint-xxs) {
+            width: 17rem;
+        }
     
         &:hover {
             filter: brightness(1.2);
@@ -67,8 +106,8 @@ h1 {
 
 .start-label-text {
     position: absolute;
-    top: 35%;
-    font-size: 1.5rem;
+    top: 38%;
+    font-size: 2rem;
     color: brown;
     z-index: 1;
     font-weight: bold;
@@ -76,6 +115,26 @@ h1 {
     &:hover {
         color: orangered;
         cursor: pointer;
+    }
+
+    @media screen and (max-width: $breakpoint-sm) {
+        font-size: 1.6rem;
+        top: 36%;
+    }
+
+    @media screen and (max-width: $breakpoint-s) {
+        font-size: 1.4rem;
+        top: 35%;
+    }
+
+    @media screen and (max-width: $breakpoint-xs) {
+        font-size: 1.3rem;
+        top: 31%;
+    }
+
+    @media screen and (max-width: $breakpoint-xxs) {
+        //width: 17rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -87,8 +146,34 @@ h1 {
     z-index: 1;
     margin: 0;
 
+    @media screen and (max-width: $breakpoint-xs) {
+       font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: $breakpoint-xxs) {
+       font-size: 0.8rem;
+    }
+
     &:hover {
         color: orange;
+
+        .arrow-down {
+            color: orangered;
+            animation: none;
+            transform: scale(1.2);
+        }
+    }
+
+    .arrow-down {
+        //transition: all 235ms linear;
+        animation: pulse 1.5s linear infinite;
+
+        position: relative;
+        top: 0.5rem;
+        left: 0.5rem;
+        font-size: 1.75rem;
+        overflow: visible;
+
     }
 }
 
@@ -99,16 +184,35 @@ ul {
     list-style-type: none;
     line-height: 2.5;
     margin: 0;
-    
     translate: all 235ms;
     max-height: 250px;
-    
     overflow: auto;
     background-color: rgba(0,0,0,0.85);
     border-radius: 0.5rem;
     padding: 1rem;
     max-height: 80vh;
     box-sizing: border-box;
+
+    @media screen and (max-width: $breakpoint-s) {
+        font-size: 0.8rem;
+    }
+
+    @media screen and(max-width:460px) {
+        font-size: 0.7rem;
+    }
+
+    @media screen and(max-width: 420px){
+        font-size: 0.65rem;
+        padding: 0.8rem;
+    }
+
+    @media screen and (max-width: $breakpoint-xs) {
+        font-size: 0.6rem;
+    }
+
+    @media screen and (max-width: $breakpoint-xxs) {
+        font-size: 0.55rem;
+    }
 
     a {
         color: rgb(244, 149, 33);
@@ -151,4 +255,18 @@ ul {
         transform: translateY(100vh);
     }
 
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

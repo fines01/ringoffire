@@ -43,7 +43,7 @@ export class GameComponent implements OnInit {
       this.gameDocumentRef
       .valueChanges()
       .subscribe( (game: any) => {
-        //check if id exists in db, else redirect (better solution?)
+        //check if id exists in db, else redirect
         if (!this.checkRouteExists(game)) return;
         this.game.currentPlayer = game.currentPlayer;
         this.game.playedCards = game.playedCards;
