@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-player',
@@ -25,6 +25,13 @@ export class PlayerComponent implements OnInit {
   toggleEditMode() {
     if (this.editMode) this.emitUpdateEvent();
     else this.editMode = !this.editMode;
+  }
+
+  @HostListener('window:keydown.enter')
+  bindEnterKeyEvent() {
+    //console.log(document.activeElement === document.querySelector('input'));
+    let inputField = document.querySelector('input');
+    if (document.activeElement === inputField) this.emitUpdateEvent();
   }
 
   emitUpdateEvent() {

@@ -1,5 +1,5 @@
 // SASS variables
-// CSS custom properties can NOT be used in media-querie declarations!
+// CSS custom properties can NOT be used in media-querie declarations
 $breakpoint-xxs: 350px;
 $breakpoint-xs: 400px;
 $breakpoint-s: 576px;
@@ -8,3 +8,5 @@ $breakpoint-mm: 880px;
 $breakpoint-md: 992px;
 $breakpoint-lg: 1200px;
 $breakpoint-xl: 1500px;
+
+// TODO also deal with / add breakpoints for screen heights?

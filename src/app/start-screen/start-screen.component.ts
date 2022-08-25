@@ -47,9 +47,7 @@ export class StartScreenComponent implements OnInit {
 ;   return (Date.now() - lastActive <= msUntilInactive);
   }
 
-  sortByTimestamp(arr: any[]) {
-   
-  }
+  sortByTimestamp(arr: any[]) {}
 
   toggleBox() {
     this.fadeOutRoomsList = !this.fadeOutRoomsList;

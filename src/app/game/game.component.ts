@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
 
   game!: Game;
   gameId!: string;
-  gameDocumentRef!: any; // todo types
+  gameDocumentRef!: any;
   gameOver: boolean = false;
 
   constructor(
@@ -30,33 +30,39 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.newGame();
-    //open game room modal (name room, show btn to copy url)
-
-    // refactor
+    // todo: open game room modal (name room, show btn to copy url)
+    // subscribe url parameters (to get id of collection)
     this.route.params.subscribe( (params)=>{     
-      this.gameId = params['id']; //params.id
-      
-      this.gameDocumentRef = this.firestore
+      this.gameId = params['id'];
+      this.subscribeGameCollection(this.gameId);
+    });
+
+  }
+
+  subscribeGameCollection(gameId: string) {
+    this.gameDocumentRef = this.firestore
       .collection('games')
       .doc(this.gameId);
-
-      this.gameDocumentRef
+    this.gameDocumentRef
       .valueChanges()
       .subscribe( (game: any) => {
         //check if id exists in db, else redirect
         if (!this.checkRouteExists(game)) return;
-        this.game.currentPlayer = game.currentPlayer;
-        this.game.playedCards = game.playedCards;
-        this.game.players = game.players;
-        this.game.stack = game.stack;
-        this.game.pickCardAnimation = game.pickCardAnimation,
-        this.game.currentCard = game.currentCard
-        this.game.lastActiveTime = game.lastActiveTime;
-        this.game.gameRoomName = game.gameRoomName;
+        // copy variables with game infos (because observables are asynchronous)
+        this.setGameInfo(game);
         this.checkGameStatus(game.stack);
       });
-    });
+  }
 
+  setGameInfo(game: any) {
+    this.game.currentPlayer = game.currentPlayer;
+    this.game.playedCards = game.playedCards;
+    this.game.players = game.players;
+    this.game.pickCardAnimation = game.pickCardAnimation,
+    this.game.stack = game.stack;
+    this.game.lastActiveTime = game.lastActiveTime;
+    this.game.currentCard = game.currentCard
+    this.game.gameRoomName = game.gameRoomName;
   }
 
   newGame(): void {
@@ -70,22 +76,31 @@ export class GameComponent implements OnInit {
 
   pickCard() {
     this.checkGameStatus();
-
-    if (!this.game.pickCardAnimation && this.game.players.length >= 2 && !this.gameOver){
+    if (this.cardDrawPossible()){
       let card = this.game.stack.pop();
       if (typeof card === 'string') this.game.currentCard = card;
       this.game.pickCardAnimation = true;
       this.nextPlayer();
       this.game.lastActiveTime = Date.now();
       this.updateGamesCollection();
-      //animation
-      setTimeout( ()=>{
+      this.endAnimation();
+    }
+  }
+
+  cardDrawPossible() {
+    return (
+      !this.game.pickCardAnimation && 
+      this.game.players.length >= 2 && 
+      !this.gameOver
+    );
+  }
+
+  endAnimation() {
+     setTimeout( ()=>{
         this.game.pickCardAnimation = false;
         this.game.playedCards.push(this.game.currentCard);
         this.updateGamesCollection();
       }, 1000);
-    }
-  
   }
 
   nextPlayer(index: number | undefined = undefined) {
@@ -161,15 +176,10 @@ export class GameComponent implements OnInit {
     return this.gameOver;
   }
 
-  @HostListener('window: load', ['$event'])
-  onLoad1(event: Event) {
-    console.log('LoAD', event);
-  }
-
-  @HostListener('window: load')
-  onLoad2() {
-    console.log('LOAD');
-  }
+  // @HostListener('window: load', ['$event'])
+  // onLoad1(event: Event) {
+  //   console.log('LoAD', event);
+  // }
 
   checkGameStatus( stack = this.game.stack ) {
     if (stack.length === 0) this.gameOver = true;

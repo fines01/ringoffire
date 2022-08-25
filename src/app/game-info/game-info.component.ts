@@ -39,22 +39,38 @@ export class GameInfoComponent implements OnInit, OnChanges {
   ngOnInit(): void { }
 
   ngOnChanges(): void {
-    if (!this.card && this.gameIsReady && !this.gameIsOver) {
-      this.title = 'Please pick a card';
-      this.description ='Click on the card stack to select the next card';
-    }
-    if (this.gameIsOver){
-      this.title = 'Game Over!'
-      this.description = 'Exit and delete the game room or start again?'
-    }
+    this.checkGameStart();
+    this.checkGameOver();
+    this.checkGameReady();
+    this.checkCardInfo();
+  }
+
+  checkGameReady() {
     if (!this.gameIsReady) {
       this.title = 'Please add at least 2 players!';
       this.description ='Click on the button above to add a new player.';
     }
+  }
+
+  checkGameStart() {
+    if (!this.card && this.gameIsReady && !this.gameIsOver) {
+      this.title = 'Please pick a card';
+      this.description ='Click on the card stack to select the next card';
+    }
+  }
+
+  checkCardInfo() {
     if (this.card && this.gameIsReady && !this.gameIsOver) {
       let cardNumber = +this.card.split('_')[1];
       this.title = this.cardActions[cardNumber-1].title;
       this.description = this.cardActions[cardNumber-1].description;
+    }
+  }
+
+  checkGameOver() {
+    if (this.gameIsOver){
+      this.title = 'Game Over!'
+      this.description = 'Exit and delete the game room or start again?'
     }
   }
 
