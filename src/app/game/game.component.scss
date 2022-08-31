@@ -58,17 +58,23 @@
     position: relative;
     bottom: 18%;
     left:6%;
-
-    
     
     @media screen and(max-width: $breakpoint-md){
       bottom: 18%;
       left: 0%;
     }
+
+    @media screen and (max-height: $breakpoint-y-m) {
+      bottom: 25%;
+      left: 8%;
+    }
     
     @media screen and(max-width: $breakpoint-mm) {}
     
-    @media screen and(max-width: $breakpoint-sm) {}
+    @media screen and(max-width: $breakpoint-sm) and(max-height: $breakpoint-y-m) {
+      bottom: 18%; //21%
+      left: 0%; // 8%
+    }
 
     @media screen and(max-width: $breakpoint-s) {
       //bottom: 19%;
@@ -89,6 +95,11 @@
       left: -15%;
     }
 
+    @media screen and(max-width: $breakpoint-xxs) and (max-height: $breakpoint-y-m) {
+      bottom: 26%;
+      left: 0;
+    }
+
     @media screen and (min-width: $breakpoint-xl) {
       bottom: 14%;
     }
@@ -103,6 +114,10 @@
 
         @media screen and (min-width: $breakpoint-xl){
           width: 130px;
+        }
+
+        @media screen and(max-width: $breakpoint-xxs) and (max-height: $breakpoint-y-m) { 
+          width: 100px;
         }
     }
 }
@@ -140,8 +155,7 @@
 .played-card {
     right:25vw; // 300px;
     top: 15vw; //200px;
-    // transform: scale(1.2) translateX(-3px) tramslateY(-150px) rotate(-10deg);
-    transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+    transform: var(--picked-card-transform);
 
     @media screen and(max-width: $breakpoint-lg){
       right: 21vw;
@@ -178,13 +192,21 @@
       top: 140vw;
     }
 
+    @media screen and(max-height: $breakpoint-y-m) {
+      top: 45vh;
+    }
+
+    @media screen and(max-width: $breakpoint-xxs) and (max-height: $breakpoint-y-m) {
+      right: 0;
+      top: 53vh;
+    }
 }
 
 .picked-card {
     transition: all 125ms ease-in-out;
     animation: pick-card-animation 1s ease-in-out;
-    //transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
-    transform: scale(1.1) translate(110px, 0px) rotate(-5deg);
+    transform: var(--picked-card-transform);
+    
 
 }
 
@@ -192,6 +214,15 @@
   position: absolute;
   left: 2rem;
   top: 2rem;
+
+  @media screen and(max-width: $breakpoint-xxs) and (max-height: $breakpoint-y-m) {
+    height: 3rem;
+    width: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .info-card {
@@ -215,7 +246,11 @@
         transform: scale(1.7);
     }
 
+    80% {
+      transform: scale(1.1) translate(60, -75px) rotate(-7deg);
+    }
+
     100% {
-        transform: scale(1.2) translate(-3px, -150px) rotate(-10deg);
+        transform: var(--picked-card-transform);//scale(1.2) translate(-3px, -150px) rotate(-10deg);
     }
 }

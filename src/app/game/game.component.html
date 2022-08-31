@@ -19,25 +19,25 @@
     <div class="card-stack">
       <!-- card stack: simulating a card stack by adding 5 cards with a slight offset of i (index) pixel -->
       <img 
-        src="/assets/img/cards/card_cover.png" 
+        src="assets/img/cards/card_cover.png" 
         alt="" 
         *ngFor="let c of [].constructor(18); let i = index;"
         [ngStyle]="{'transform': 'rotate('+ i*20 +'deg) translate('+ 20+'px, var(--translate-y))'}">
       <!-- last (top) card -->
       <img 
         class="top-card card-screen-m" 
-        src="/assets/img/cards/card_cover.png" 
+        src="assets/img/cards/card_cover.png" 
         alt="" 
         style="right: 2.5px" 
         (click)="pickCard()">
       <!-- stack for played cards -->
       <img 
         class="played-card" 
-        *ngFor="let card of game.playedCards" src="/assets/img/cards/{{ card }}.png" 
+        *ngFor="let card of game.playedCards" src="assets/img/cards/{{ card }}.png" 
         alt="">
       <!-- current picked card & picked card animation -->
       <img 
-        class="picked-card" src="/assets/img/cards/{{ game.currentCard }}.png" 
+        class="picked-card" src="assets/img/cards/{{ game.currentCard }}.png" 
         alt="" 
         style="right: 25px"
         *ngIf="game.pickCardAnimation" 

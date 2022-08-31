@@ -189,8 +189,31 @@
 @media screen and(max-width: $breakpoint-xxs) {
     .player {
         width: 230px;
-        top: 7rem;
+        top: 5rem;
     }
+
+// @media screen and(max-height: $breakpoint-y-s) {
+//     .player {
+//         width: 210px;
+//         top: 2rem;
+//     }
+// }
+
+@media screen and(max-width: $breakpoint-xxs) and (max-height: $breakpoint-y-m) {
+    .player span, .player input {
+        font-size: 0.8rem;
+    }
+
+    .player img {
+        height: 3rem;
+        width: 3rem;
+    }
+
+    .player {
+        width: 200px;
+        top: 2rem;
+    }
+}
 
     .player-active .edit-buttons{
         .delete-user-btn {
