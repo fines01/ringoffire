@@ -157,7 +157,6 @@
     //transform: translate(120px, 10px) rotate(-10deg); // card screen-s/m/l
     border: 1px solid brown;
     border-radius: 16px;
-    //box-shadow: 0 0 6px 2px rgb(0,0,0, 0.5);
 
     &:hover {
         //transform: scale(1.1) translateY(-10px);
@@ -177,7 +176,8 @@
   transform: translate(120px, 10px); // rotate(-10deg);
 
   &:hover {
-    transform: scale(1.1) translateY(-10px);
+    // transform: scale(1.1) translateY(-10px);
+    transform: scale(1.1) translate(110px, 0px) rotate(-5deg);
   }
 }
 
@@ -234,7 +234,7 @@
 .picked-card {
     transition: all 125ms ease-in-out;
     animation: pick-card-animation 1s ease-in-out;
-    transform: var(--picked-card-transform);
+    // transform: var(--picked-card-transform);
     
 
 }
@@ -268,15 +268,15 @@
     }
 
     40% {
-        transform: scale(1.7);
+        transform: scale(1.7) translate(110px, 0px) rotate(-8deg);
     }
 
     60% {
-        transform: scale(1.7);
+        transform: scale(1.7) translate(110px, 0px) rotate(-8deg);
     }
 
     80% {
-      transform: scale(1.1) translate(60, -75px) rotate(-7deg);
+      // transform: scale(1.1) translate(60, -75px) rotate(-7deg);
     }
 
     100% {

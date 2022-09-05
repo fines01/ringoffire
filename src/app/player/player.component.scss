@@ -20,14 +20,17 @@
         margin-bottom: 3rem;
         
     }
+
+    span {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width:65%;
+    }
     
     span, input {
         font-size: 1.5rem;
         margin-left: 1rem;
-        //
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
         font-size: 19px;
     }
 
@@ -36,11 +39,7 @@
         outline: none;
         font-family: inherit;
         background-color: transparent;
-        // font-size: 24px;
-        // margin-left: 16px;
         border-bottom: 1px solid rgba(182, 182, 182, 0.5);
-        //box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
-        //border-radius: 0.5rem 0 0 0.5rem;
         padding-right: 0.25rem;
         box-sizing: border-box;
     }
@@ -196,13 +195,6 @@
         width: 230px;
         top: 5rem;
     }
-
-// @media screen and(max-height: $breakpoint-y-s) {
-//     .player {
-//         width: 210px;
-//         top: 2rem;
-//     }
-// }
 
 @media screen and(max-width: $breakpoint-xxs) and (max-height: $breakpoint-y-m) {
     .player span, .player input {
