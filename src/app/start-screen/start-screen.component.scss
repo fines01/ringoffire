@@ -193,6 +193,28 @@ ul {
     max-height: 35vh;
     box-sizing: border-box;
 
+    /* Scrollbar */
+    /* width */
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: black;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: rgb(136, 136, 136);
+      border-radius: 4px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(85, 85, 85);
+    }
+
     @media screen and (max-width: $breakpoint-s) {
         font-size: 0.8rem;
     }

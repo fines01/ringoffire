@@ -11,7 +11,13 @@
         (updatePlayer)="onUpdatePlayer($event)"
         (deletePlayer)="onDeletePlayer($event)">
     </app-player>
-    <!-- style="top: 24px"  -->
+    <div class="delete-room">
+      <button
+        title="Delete game"
+        (click)="onDeleteGame()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </div>
 
   <div class="game-field">

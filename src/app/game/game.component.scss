@@ -32,16 +32,15 @@
     display: flex;
     overflow-x: hidden;
     z-index: 2;
-    
     width: var(--width-sidecontainer);
     max-width: 100%;
-
     background-color: rgb(103, 58, 183, 0.85);
 
     @media screen and(max-width: $breakpoint-sm) {
        width: 0;
     }
-}
+
+  }
 
 .player-position {
   position: absolute;
@@ -51,6 +50,36 @@
 
   &:last-child {
     margin-bottom: 2rem;
+  }
+}
+
+.delete-room {
+  width: 100%;
+  // right: 1rem;
+  position: absolute;
+  bottom: 1rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  button {
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 3.5rem;
+    width: 3.5rem;
+    // border: 1px solid rgb(163,0,0);
+    border: none;
+    background-color: rgba(103, 58, 183);
+    color: rgb(163, 0, 0);
+    border-radius: 50%;
+    transition: all 225ms linear;
+
+    &:hover {
+      background-color: rgba(103, 58, 183, 0.55);
+      color: rgb(146, 0, 0);
+    }
   }
 }
 
@@ -254,3 +283,8 @@
         transform: var(--picked-card-transform);//scale(1.2) translate(-3px, -150px) rotate(-10deg);
     }
 }
+
+// .preload-image {
+//   opacity: 0;
+//   z-index: -9;
+// }
