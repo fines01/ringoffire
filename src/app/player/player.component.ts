@@ -8,6 +8,7 @@ import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@a
 export class PlayerComponent implements OnInit {
 
   editMode = false;
+  restoreValue!:string;
 
   @Input() name!: string;
   @Input() nameIndex!: number;
@@ -20,6 +21,7 @@ export class PlayerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.restoreValue = this.name;
   }
 
   toggleEditMode() {
@@ -29,19 +31,25 @@ export class PlayerComponent implements OnInit {
 
   @HostListener('window:keydown.enter')
   bindEnterKeyEvent() {
-    //console.log(document.activeElement === document.querySelector('input'));
     let inputField = document.querySelector('input');
     if (document.activeElement === inputField) this.emitUpdateEvent();
   }
 
   emitUpdateEvent() {
-    this.updatePlayer.emit([this.name, this.nameIndex]);
+    if (this.validateInput()) {
+      this.updatePlayer.emit([this.name, this.nameIndex]);
+    }
+    else this.name = this.restoreValue;
     this.editMode = false;
   }
 
   emitDeleteEvent() {
     this.deletePlayer.emit([this.name, this.nameIndex, this.playerIsActive]); //or only nameIndex 
     this.editMode = false;
+  }
+
+  validateInput() {
+    return (this.name && this.name.trim().length > 0)
   }
 
 }
