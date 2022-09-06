@@ -23,8 +23,6 @@ export class StartScreenComponent implements OnInit {
   ngOnInit(): void {
     this.gamesCollection = this.firestore.collection('games'); // collection
     this.allGames$ = this.getAllGames();// observable
-    
-    console.log(this.gamesCollection, this.allGames$);
   }
 
   startGame() {

@@ -8,32 +8,35 @@
         </span>
     </div>
 
-    <!-- active rooms: later: open rooms or users created rooms -->
-    <h3 class="rooms-info" 
-        (click)="toggleBox()"
-        title="{{ hideRoomsList ? 'Show List' : 'Hide List' }}">
-            Currently open game rooms <mat-icon *ngIf="hideRoomsList" class="arrow-down">arrow_downwards</mat-icon>
-    </h3>
+    <!-- open game rooms: -->
+    <section id="room-list">
 
-    <!-- todo: style, open in modal? -->
-    <ul [class.d-none]="hideRoomsList"
-        [class.fade-out]="!fadeOutRoomsList">
-        <li 
-            *ngFor="let game of allGames$ | async ">
-                <a 
-                    target="_blank"
-                    title="Go to room"
-                    routerLink="/game/{{ game.id }}" 
-                    href="">Room #ID: {{ game.gameRoomName }}
-                </a> 
-
-                is currently 
-                <span 
-                    [class.active]="(checkGameActivity(game.lastActiveTime))"
-                    title="{{ checkGameActivity(game.lastActiveTime) ? '' : 'No activity in the last '+minutesUntilInactive+' minutes' }}">
-                        {{ checkGameActivity(game.lastActiveTime) ? 'active' : 'inactive' }}
-                </span>
-        </li>
-    </ul>
+        <h3 class="room-list-heading" 
+            (click)="toggleBox()"
+            title="{{ hideRoomsList ? 'Show List' : 'Hide List' }}">
+                Currently open game rooms <mat-icon *ngIf="hideRoomsList" class="arrow-down">arrow_downwards</mat-icon>
+        </h3>
+    
+        <!--  -->
+        <ul [class.d-none]="hideRoomsList"
+            [class.fade-out]="!fadeOutRoomsList">
+            <li 
+                *ngFor="let game of allGames$ | async ">
+                    <a 
+                        target="_blank"
+                        title="Go to room"
+                        routerLink="/game/{{ game.id }}" 
+                        href="">Room #ID: {{ game.gameRoomName }}
+                    </a> 
+    
+                    is currently 
+                    <span 
+                        [class.active]="(checkGameActivity(game.lastActiveTime))"
+                        title="{{ checkGameActivity(game.lastActiveTime) ? '' : 'No activity in the last '+minutesUntilInactive+' minutes' }}">
+                            {{ checkGameActivity(game.lastActiveTime) ? 'active' : 'inactive' }}
+                    </span>
+            </li>
+        </ul>
+    </section>
     
 </div>

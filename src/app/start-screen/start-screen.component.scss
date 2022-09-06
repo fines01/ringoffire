@@ -138,13 +138,17 @@ h1 {
     }
 }
 
-.rooms-info {
+#room-list {
+    z-index: 1;
+}
+
+.room-list-heading {
     color: orangered;
     cursor: pointer;
     font-weight: bold;
     text-align: center;
     z-index: 1;
-    margin: 0;
+    margin: 0 0 1rem 0;
 
     @media screen and (max-width: $breakpoint-xs) {
        font-size: 0.9rem;
