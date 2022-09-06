@@ -9,13 +9,15 @@
             autofocus>
         <div class="edit-buttons">
             <button 
-                mat-mini-fab 
+                mat-mini-fab
+                title="Save" 
                 (click)="emitUpdateEvent()">
                     <mat-icon>check_circle</mat-icon>
             </button>
             <button 
                 mat-mini-fab 
-                class="delete-user-btn" 
+                class="delete-user-btn"
+                title="Delete user" 
                 (click)="emitDeleteEvent()">
                     <mat-icon color="warn">delete_forever</mat-icon>
             </button>
