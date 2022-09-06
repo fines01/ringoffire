@@ -118,19 +118,28 @@ export class GameComponent implements OnInit {
   }
 
   addPlayer(dialogRef: any) {
-    dialogRef.afterClosed().subscribe( (playerName: string) => {
-      if (playerName && playerName.length > 0) {
+    dialogRef.afterClosed().subscribe( (nameInput: string) => {
+      if (nameInput && nameInput.length > 0) {
+        let playerName = this.validateName(nameInput)
         this.game.players.push(playerName);
         this.game.lastActiveTime = Date.now();
         this.updateGamesCollection();
       }
     });
-
   }
 
   addPlayerModal(): void {
     const dialogRef = this.openModal(DialogAddPlayerComponent, '250px');
     this.addPlayer(dialogRef);
+  }
+
+  validateName(name: string) {
+    name = name.trim();
+    if (name.length > 10){
+      name = name.slice(0,10) + '...';
+    }
+
+    return name;
   }
 
   updateGamesCollection() {

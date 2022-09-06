@@ -11,13 +11,14 @@
     //box-sizing: border-box;
     transition: all 235ms linear;
     position: relative;
+    z-index: 3; //vd!
     
     &:hover {
         box-shadow: 0 0 3px 0 rgba(0,0,0,0.5);
     }
     
     &:last-child {
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
         
     }
 
@@ -121,7 +122,9 @@
 
 .edit-buttons {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
+    
+    z-index: 100;
 
     button:first-child{
         border-radius: 0 0.5rem 0 0;

@@ -25,7 +25,7 @@
     position: fixed;
     overflow: auto;
     // padding: 0 0 1rem 1rem;
-    // position: absolute;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
@@ -33,11 +33,11 @@
     overflow-x: hidden;
     z-index: 2;
     width: var(--width-sidecontainer);
-    max-width: 100%;
+    //max-width: 100%;
     background-color: rgb(103, 58, 183, 0.85);
 
     @media screen and(max-width: $breakpoint-sm) {
-       width: 0;
+      width: 0;
     }
 
   }
@@ -54,32 +54,48 @@
 }
 
 .delete-room {
-  width: 100%;
-  // right: 1rem;
+  width: var(--width-sidecontainer);
   position: absolute;
-  bottom: 1rem;
+  bottom: 0rem;
+  right: 0rem;
   border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0.5rem 0;
+  
+  @media screen and(max-width: $breakpoint-sm) {
+    position: absolute;
+    width: 3rem;
+    justify-content: flex-end;
+    margin: 0.75rem;
+  }
+  
+  // position: relative;
   
   button {
+    z-index: 3;
     background-color: transparent;
     cursor: pointer;
     border-radius: 50%;
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 3rem;
+    width: 3rem;
     // border: 1px solid rgb(163,0,0);
     border: none;
     background-color: rgba(103, 58, 183);
     color: rgb(163, 0, 0);
     border-radius: 50%;
     transition: all 225ms linear;
+    // margin: 1rem;
+    opacity: 0.5;
 
     &:hover {
       background-color: rgba(103, 58, 183, 0.55);
       color: rgb(146, 0, 0);
+      opacity: 1;
+      transform: scale(1.1);
     }
+
   }
 }
 

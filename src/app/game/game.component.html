@@ -1,23 +1,24 @@
 <div class="game-container" (load)="checkGameStatus()">
 
-  <div class="player-field">
-    <app-player 
-        class="player-position" 
-        *ngFor="let player of game.players; let i = index"
-        [ngStyle]="{'top.px': 48 + ( i * 90)}" 
-        [name]="player" 
-        [playerIsActive]="i === game.currentPlayer"
-        [nameIndex]="i"
-        (updatePlayer)="onUpdatePlayer($event)"
-        (deletePlayer)="onDeletePlayer($event)">
-    </app-player>
-    <div class="delete-room">
-      <button
-        title="Delete game"
-        (click)="onDeleteGame()">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
+  <div class="player-field">   
+      <app-player 
+          *ngFor="let player of game.players; let i = index"
+          class="player-position" 
+          [ngStyle]="{'top.px': 48 + ( i * 90)}" 
+          [name]="player" 
+          [playerIsActive]="i === game.currentPlayer"
+          [nameIndex]="i"
+          (updatePlayer)="onUpdatePlayer($event)"
+          (deletePlayer)="onDeletePlayer($event)">
+      </app-player>
+  </div>
+
+  <div *ngIf="!gameOver" class="delete-room">
+    <button
+      title="Delete game"
+      (click)="onDeleteGame()">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
 
   <div class="game-field">

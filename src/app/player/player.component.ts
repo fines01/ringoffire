@@ -49,6 +49,10 @@ export class PlayerComponent implements OnInit {
   }
 
   validateInput() {
+    this.name = this.name.trim();
+    if (this.name.length > 10){
+      this.name = this.name.slice(0,10) + '...';
+    }
     return (this.name && this.name.trim().length > 0)
   }
 
