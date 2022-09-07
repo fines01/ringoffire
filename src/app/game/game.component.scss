@@ -2,18 +2,20 @@
 
 .game-container {
     display: flex;
+
+    background-image: url('../../assets/img/cards-1912165_1920.jpg');
+    background-size: cover;
 }
 
 .game-field {
     width: calc(100vw - var(--width-sidecontainer)); //65vw;
     height: 100vh;
     max-width: 100%;
-    // background-image: url('/assets/img/board.jpg');
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: aliceblue;
+    background-color: rgba(26, 250, 131, 0.2);
     overflow: hidden;
 
     @media screen and(max-width: $breakpoint-sm) {
@@ -24,7 +26,6 @@
 .player-field {
     position: fixed;
     overflow: auto;
-    // padding: 0 0 1rem 1rem;
     position: absolute;
     top: 0;
     bottom: 4rem;
@@ -34,7 +35,8 @@
     z-index: 2;
     width: var(--width-sidecontainer);
     //max-width: 100%;
-    background-color: rgb(103, 58, 183, 0.85);
+    background-color: rgba(0,0,0, 0.6);
+    box-shadow: 0 0 2px 1px rgba(0,0,0,0.5);
 
     @media screen and(max-width: $breakpoint-sm) {
       width: 0;
@@ -89,8 +91,8 @@
   justify-content: center;
   align-items: center;
   padding: 0.5rem 0;
-
-  background-color: rgb(103, 58, 183, 0.85);
+  // background-color: rgb(103, 58, 183, 0.85);
+  background-color: rgba(0,0,0,0.6);
   
   @media screen and(max-width: $breakpoint-sm) {
     position: absolute;
@@ -103,18 +105,15 @@
   
   button {
     z-index: 3;
-    background-color: transparent;
     cursor: pointer;
     border-radius: 50%;
     height: 3rem;
     width: 3rem;
-    // border: 1px solid rgb(163,0,0);
     border: none;
-    background-color: rgba(103, 58, 183);
-    color: rgb(163, 0, 0);
+    background-color: var(--purple-1);
+    color: rgb(253, 158, 175);
     border-radius: 50%;
     transition: all 225ms linear;
-    // margin: 1rem;
     opacity: 0.5;
 
     &:hover {
@@ -287,6 +286,7 @@
   position: absolute;
   left: 2rem;
   top: 2rem;
+  background-color: var(--purple-1);
 
   @media screen and(max-width: $breakpoint-xxs) and (max-height: $breakpoint-y-m) {
     height: 3rem;

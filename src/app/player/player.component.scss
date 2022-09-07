@@ -6,10 +6,11 @@
     display: flex;
     align-items: center;
     font-size: 18px;
-    background-color: rgb(100,100, 100, 0.6);
+    // background-color: rgb(100,100, 100, 0.6);
+    background-color: rgba(148, 166, 181, 0.6);
     border-radius: 50px 0 0 50px; //test: linke ränder (border-bottom-left-radius & border-top-left-radius
     //box-sizing: border-box;
-    transition: all 235ms linear;
+    transition: all 225ms linear;
     position: relative;
     z-index: 3; //vd!
     
@@ -18,7 +19,7 @@
     }
     
     &:last-child {
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
         
     }
 
@@ -81,7 +82,7 @@
 }
 
 .player-active {
-    background-color: rgb(255, 140, 50, 0.9) !important;
+    background-color: rgb(255, 141, 0, 0.9) !important;
     transform: scale(1.1);
 
     button:first-child {
@@ -123,20 +124,17 @@
 .edit-buttons {
     display: flex;
     flex-direction: column;
-    
-    z-index: 100;
+    // z-index: 100;
 
     button:first-child{
-        border-radius: 0 0.5rem 0 0;
+        border-radius: 0.5rem;
         color: indigo;
-       
+        color: var(--purple-1);
     }
 
     button:last-child{
-        // border-radius: 0 0 0.5rem 0;
-        //box-shadow: 0 0 3px 0 rgb(255, 0, 0, 0.9);
-        background-color: rgb(255, 0, 0, 0.2);
-        
+        border-radius: 0;
+        background-color: rgb(255, 0, 0, 0.2);        
         position: absolute;
         top:0;
         right:0;
