@@ -75,7 +75,7 @@ export class GameInfoComponent implements OnInit, OnChanges {
   }
 
   emitDeleteEvent() {
-    this.deleteGame.emit(); // emit empty event or bool
+    this.deleteGame.emit();
   }
 
   emitRestartEvent() {

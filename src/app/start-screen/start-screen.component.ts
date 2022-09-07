@@ -39,10 +39,9 @@ export class StartScreenComponent implements OnInit {
     return this.gamesCollection.valueChanges( {idField:'id'} ); //valueChanges() returns Observable
   }
 
-  // rooms are marked as inactive after (5) minutes
   checkGameActivity(lastActive: number){
     let msUntilInactive = this.minutesUntilInactive * 60000;
-;   return (Date.now() - lastActive <= msUntilInactive);
+    return (Date.now() - lastActive <= msUntilInactive);
   }
 
   sortByTimestamp(arr: any[]) {}

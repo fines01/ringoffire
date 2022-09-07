@@ -11,7 +11,7 @@ export class DialogAddPlayerComponent implements OnInit {
 
   name!: string;
 
-  constructor(private dialogRef: MatDialogRef<DialogAddPlayerComponent>) { } //private. nur in TS datei gebraucht
+  constructor(private dialogRef: MatDialogRef<DialogAddPlayerComponent>) { }
 
   ngOnInit(): void {
   }
